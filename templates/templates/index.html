@@ -1,1 +1,12 @@
-<h1>hello world</h1>
+{% extends 'templates/base.html' %}
+<form class="box" method = "POST" >
+{% csrf_token %}
+Title
+<input type="text" name="Title"/>
+<br/>
+description:
+<input type="text" name="content"/>
+<br/>
+<input class ="btn" type="submit" value= "signup" />
+<br/>
+</form>
