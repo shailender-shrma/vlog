@@ -7,7 +7,7 @@ class Signup(UserCreationForm):
     username = forms.CharField(max_length=10, required=True)
     email = forms.EmailField(required=True)
     phone = forms.IntegerField(max_value=10)
-    
+
 
     class Meta:
         model = User

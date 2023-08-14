@@ -1,6 +1,3 @@
-{% block content %}
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -195,6 +192,8 @@ body {
 </style>
 </head> 
 <body>
+{% block content %}
+
 <nav class="navbar navbar-expand-xl navbar-dark bg-dark">
 	<a href="#" class="navbar-brand"><i class="fa fa-cube"></i>Blog<b>site</b></a>  		
 	<button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
@@ -204,27 +203,51 @@ body {
 	<div id="navbarCollapse" class="collapse navbar-collapse justify-content-start">		
 		
 		<div class="navbar-nav ml-auto">
-			<a href="#" class="nav-item nav-link active"><i class="fa fa-home"></i><span>Home</span></a>
+			<a href="#" class="nav-item nav-link active"><span>Home</span></a>
 			
 			
-			<a href="{% url "signup" %}" class="nav-item nav-link"><i class="fa fa-envelope"></i><span>signup</span></a>		
+				
 			{% comment %} <a href="{% url "login" %}" class="nav-item nav-link"><i class="fa fa-bell"></i><span>login</span></a> {% endcomment %}
 			
         {% if user.is_authenticated %}
-            <form action="{% url 'logout' %}" method="post">
-        {% csrf_token %}
-            <button type="submit" class="liker">Logout</button>
-            </form>
+        <form action="{% url 'logout' %}" method="post">
+        	{% csrf_token %}
+			<button type="submit" class="liker">Logout</button>
+			<a class="nav-item nav-link" href="{% url 'addpost' %}"><i class="glyphicon glyphicon-off"></i>add post</a>
+            
+        </form>
+			{% comment %} <a type="submit" class="nav-item nav-link" href="{% url 'addpost' %}"><i class="glyphicon glyphicon-off"></i>Add Post</a> {% endcomment %}
         {% else %}
-            <a class="nav-item nav-link" href="{% url 'login' %}"><i class="fa fa-briefcase"></i>Login</a>
+			<a href="{% url "signup" %}" class="nav-item nav-link"><span>signup</span></a>	
+            <a class="nav-item nav-link" href="{% url 'login' %}"><i class="glyphicon glyphicon-off"></i>Login</a>
         {% endif %}
-<div class="nav-item dropdown">
-				<p data-toggle="dropdown" class="nav-item nav-link user-action">hey {{ form.username }} <b class="caret"></b></p>
+		
+			<p data-toggle="dropdown" class="nav-item nav-link user-action">hey {{ user.username }} </p>
 				
 			</div>
 		</div>
 	</div>
 </nav>
+
+
+
+	
+	{% for sts in ppost %}
+				<!-- Card content -->
+				<div class="card" style="width: 300px; margin:5px">
+					
+					<div class="card-body text-center">
+						<h5 class="card-title">{{ user.author }}</h5>
+						<p class="card-text">{{ sts.title }}</p>
+						<p>{{ sts.content }}</p>
+					</div>
+				</div> 
+	{% endfor %} 
+	
+
+
+    
+
+{% endblock %} 
 </body>
 </html>
-{% endblock %} 

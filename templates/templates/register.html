@@ -14,7 +14,7 @@
 </head>
 
 
-{% if not user.is_authenticated %}
+
 
 <form class="box" method = "POST" >
   {% csrf_token %}
@@ -24,6 +24,17 @@
   Username:
   <br/>
   <input type="text" name="username" />
+  <br/>
+  {% comment %} first name
+  <br/>
+  <input type="text" name="firstname" />
+  <br/>
+  lastname
+  <input type="text" name="lastname" />
+  <br/> {% endcomment %}
+  phone
+  <br/>
+  <input type="text" name="phone" />
   <br/>
   Password:
   <br/>
@@ -36,6 +47,3 @@
   <input class ="btn" type="submit" value= "signup" />
   <br/>
 </form>
-{% else %}
-<a href="{% url 'logout' %}">logout</a>
-{% endif %}

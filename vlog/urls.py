@@ -22,10 +22,11 @@ from user import views as use
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', use.show_post, name='show_post'),
-    path('signup/', use.signup, name='signup'),
-    path('login/',use.login,name='login'),
-    path('logout', use.logout,name='logout')
+    path('add_post/', pos.Add_post, name='addpost'),
+    path('signup/', use.Signup, name='signup'),
+    path('login/',use.Login,name='login'),
+    path('logout/', use.Logout,name='logout'),
+    path('',pos.Show_post,name='showpost')
     
 
 ]
