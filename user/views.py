@@ -24,16 +24,19 @@ def Login(request):
         user = auth.authenticate(username=request.POST['username'],password = request.POST['password'])
         if user is not None:
             auth.login(request,user)
-            return render(request, 'templates/index.html')
+            return redirect('showpost')
         else:
             return render (request,'templates/login.html', {'error':'Username or password is incorrect!'})
     else:
         return render(request,'templates/login.html')
+   
 
 def Logout(request):
     if request.method == 'POST':
         auth.logout(request)
-    return render(request,'templates/index.html')
+        return render(request,"templates/login.html")
+    else:
+        return render(request, "templates/index.html")
 
 # def Show_post(request):
     

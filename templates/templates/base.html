@@ -224,28 +224,55 @@ body {
 		
 			<p data-toggle="dropdown" class="nav-item nav-link user-action">hey {{ user.username }} </p>
 				
-			</div>
+			
 		</div>
 	</div>
 </nav>
 
 
-
-	
+{% comment %} <table>
+	<colgroup>
+		<col style="background-color: #0f0" />
+		<col span="2" />
+	  </colgroup>
+<tbody>
+    <tr>
+      <td>The table body</td>
+      <td>with two columns</td>
+    </tr>
+  </tbody>
+</table> {% endcomment %}
+<div class="container">
+			<div style="
+				height: 100%;
+				width:180px;
+				border:1px solid grey;
+				font-family: 'GestaRegular', Arial, Helvetica, sans-serif;
+				overflow: auto;">
+	{% if user.is_authenticated %}
 	{% for sts in ppost %}
-				<!-- Card content -->
-				<div class="card" style="width: 300px; margin:5px">
+				
+				<div class="card"style="border-radius:5px; margin:5px">
 					
 					<div class="card-body text-center">
-						<h5 class="card-title">{{ user.author }}</h5>
+						<h5 class="card-title">{{ sts.author }}</h5>
 						<p class="card-text">{{ sts.title }}</p>
 						<p>{{ sts.content }}</p>
+						<form method="post" action="edit">
+							{% csrf_token %}
+							<button type='submit' name="postid" value="{{ sts.pk }}" >edit</button>
+							<form method="post" action="index">
+							<button class ="btn" type="delete" value= "{{ sts.pk }}" name="delete" >delete</button>
+							</form>
+						</form>
+						
 					</div>
 				</div> 
 	{% endfor %} 
-	
+	{% endif %}
+		
 
-
+</div>
     
 
 {% endblock %} 

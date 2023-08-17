@@ -1,0 +1,15 @@
+<form class="box" method = "POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        content:
+        <input type="text" name="content" value="{{ content }}"/>
+        <br/>
+        <input class ="btn" type="submit" value= "add" />
+        <br/>
+
+        
+
+</form>
+
+
+

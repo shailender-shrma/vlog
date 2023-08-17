@@ -1,3 +1,17 @@
-{% extends 'templates/base.html' %}
+{% extends "templates/base.html" %}
 
-  <!-- Card -->
+
+  {% comment %} <p>
+    {% for sts in ppost %}
+    <!-- Card content -->
+    <div class="card" style="width: 300px; margin:5px">
+      
+      <div class="card-body text-center">
+        <h5 class="card-title" style="text:bold;">{{ sts.author }}</h5>
+        <p class="card-text">{{ sts.title }}</p>
+        <p>{{ sts.content }}</p>
+      </div>
+    </div> 
+    {% endfor %}
+  </p>
+   {% endcomment %}
