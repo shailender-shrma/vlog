@@ -34,7 +34,7 @@ def Login(request):
 def Logout(request):
     if request.method == 'POST':
         auth.logout(request)
-        return render(request,"templates/login.html")
+        return render(request,"templates/index.html")
     else:
         return render(request, "templates/index.html")
 

@@ -216,7 +216,7 @@ body {
 			<a class="nav-item nav-link" href="{% url 'addpost' %}"><i class="glyphicon glyphicon-off"></i>add post</a>
             
         </form>
-			{% comment %} <a type="submit" class="nav-item nav-link" href="{% url 'addpost' %}"><i class="glyphicon glyphicon-off"></i>Add Post</a> {% endcomment %}
+		{% comment %} <!-- <a type="submit" class="nav-item nav-link" href="{% url 'addpost<str:id> %}"><i class="glyphicon glyphicon-off"></i>Add Post</a> --> {% endcomment %}
         {% else %}
 			<a href="{% url "signup" %}" class="nav-item nav-link"><span>signup</span></a>	
             <a class="nav-item nav-link" href="{% url 'login' %}"><i class="glyphicon glyphicon-off"></i>Login</a>
@@ -242,8 +242,9 @@ body {
     </tr>
   </tbody>
 </table> {% endcomment %}
+
 <div class="container">
-			<div style="
+	<div style="
 				height: 100%;
 				width:180px;
 				border:1px solid grey;
@@ -252,27 +253,52 @@ body {
 	{% if user.is_authenticated %}
 	{% for sts in ppost %}
 				
-				<div class="card"style="border-radius:5px; margin:5px">
+		<div class="card"style="border-radius:5px; margin:5px">
 					
-					<div class="card-body text-center">
+			<div class="card-body text-center">
 						<h5 class="card-title">{{ sts.author }}</h5>
 						<p class="card-text">{{ sts.title }}</p>
 						<p>{{ sts.content }}</p>
 						<form method="post" action="edit">
 							{% csrf_token %}
+							{% if user.username == sts.author.username %}
 							<button type='submit' name="postid" value="{{ sts.pk }}" >edit</button>
 							<form method="post" action="index">
-							<button class ="btn" type="delete" value= "{{ sts.pk }}" name="delete" >delete</button>
+								<button class ="btn" type="delete" value= "{{ sts.pk }}" name="delete" >delete</button>
+							{% endif %}
 							</form>
 						</form>
 						
+			</div>
+					
+		</div>
+					
+	{% endfor %} 
+	{% else %}
+	{% for sts in ppost %}
+				<div class="card"style="border-radius:5px; margin:5px">
+					
+					<div class="card-body text-center">
+						<h5 class="card-title">{{ sts.author }}</h5>
+						<p class="card-text">{{ sts.title }}</p>
+						<p>{{ sts.content }}</p>				
 					</div>
+					
 				</div> 
 	{% endfor %} 
 	{% endif %}
 		
 
-</div>
+	</div>
+	<div class="card"style="border-radius:5px; margin:5px">
+					
+	<div class="card-body text-center">
+		<h5 class="card-title">{{ sts.author }}</h5>
+		<p class="card-text">{{ sts.title }}</p>
+		<p>{{ sts.content }}</p>				
+	</div>
+	
+</div> 
     
 
 {% endblock %} 

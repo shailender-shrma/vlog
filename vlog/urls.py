@@ -27,7 +27,6 @@ urlpatterns = [
     path('login/',use.Login,name='login'),
     path('logout/', use.Logout,name='logout'),
     path('edit',pos.edit, name='edit_post'),
-    path('',pos.Show_post,name='showpost')
+    path('',pos.Show_post,name='showpost'),
     
-
 ]

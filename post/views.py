@@ -13,6 +13,7 @@ def Show_post(request):
     poost = Post.objects.all()   
     context={"ppost":poost}
     
+    
     return render(request, 'templates/index.html', context)
 
 
@@ -72,20 +73,16 @@ def edit(request):
                 selected_user.content = content
                 selected_user.save()
 
-                return render(request, "templates/update_post.html")
+                return render(request, "templates/index.html")
             elif delete1!=None:
-                print("HTDSFDGDSVRSGRTHDGXGFGZDTHBTDXGZTD")
+                
                 delete1=int(delete1)
                 selected_user2 = Post.objects.get(pk=delete1)
-                print(delete1, selected_user2)
+                
                 selected_user2.delete()
 
                 return redirect('showpost')
-            
-                
-                
-        
-    
+
     else:
         return render(request, "templates/login.html")
     
@@ -95,11 +92,11 @@ def edit(request):
 def User_blog_post(request):
     User_post=PostForm.objects.filter(author=request.user)
     user_post = {'user_post':User_post}
-    return render(request, "templates/index.html",user_post)
+    return render(request, "showpost",user_post)
 
+# # def del_post(request):
 # def del_post(request):
-def del_post(request):
-    user = request.user
+#     user = request.user
     
 
 
